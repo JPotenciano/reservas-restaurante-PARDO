@@ -44,6 +44,27 @@ export default function useBooking() {
     return { success: true, reservation: savedReservation }
   }
 
+  const updateReservation = (id, changes) => {
+    const hasConflict = reservations.some(
+      (item) =>
+        item.id !== id &&
+        item.date === changes.date &&
+        Number(item.table) === Number(changes.table) &&
+        reservationsOverlap(item, changes),
+    )
+
+    if (hasConflict) {
+      return { success: false, message: 'Esa mesa ya está reservada en ese horario. Elige otra mesa u hora.' }
+    }
+
+    const updatedReservations = reservations.map((item) =>
+      item.id === id ? { ...item, ...changes } : item,
+    )
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedReservations))
+    setReservations(updatedReservations)
+    return { success: true }
+  }
+
   const removeReservation = (id) => {
     const updatedReservations = reservations.filter((item) => item.id !== id)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedReservations))
@@ -59,5 +80,5 @@ export default function useBooking() {
     today: reservations.filter((reservation) => reservation.date === getTodayKey()).length,
   }), [reservations])
 
-  return { reservations, addReservation, removeReservation, getReservationsForDate, stats }
+  return { reservations, addReservation, updateReservation, removeReservation, getReservationsForDate, stats }
 }

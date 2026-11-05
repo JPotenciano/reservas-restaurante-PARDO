@@ -10,8 +10,15 @@ export function BookingPage() {
 }
 
 export function AdminPage() {
-  const { reservations, removeReservation, stats } = useBooking()
-  return <DashboardAdmin reservations={reservations} removeReservation={removeReservation} stats={stats} />
+  const { reservations, updateReservation, removeReservation, stats } = useBooking()
+  return (
+    <DashboardAdmin
+      reservations={reservations}
+      updateReservation={updateReservation}
+      removeReservation={removeReservation}
+      stats={stats}
+    />
+  )
 }
 
 export function AdminRoute() {

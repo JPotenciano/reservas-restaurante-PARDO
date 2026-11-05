@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import ListaReservas from '../../components/ListaReservas.jsx'
 
-export default function DashboardAdmin({ reservations, removeReservation, stats }) {
+export default function DashboardAdmin({ reservations, updateReservation, removeReservation, stats }) {
   const navigate = useNavigate()
 
   const signOut = () => {
@@ -41,7 +41,11 @@ export default function DashboardAdmin({ reservations, removeReservation, stats 
             <h2 className="h5 mb-0">Todas las reservas</h2>
             <span className="badge rounded-pill text-bg-light">{reservations.length} total</span>
           </div>
-          <ListaReservas reservations={reservations} onRemove={removeReservation} />
+          <ListaReservas
+            reservations={reservations}
+            onUpdate={updateReservation}
+            onRemove={removeReservation}
+          />
         </div>
       </section>
     </div>

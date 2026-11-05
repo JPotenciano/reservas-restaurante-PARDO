@@ -32,6 +32,6 @@ Bootstrap se instala como dependencia del proyecto y sus estilos y JavaScript se
 - Calendario interactivo con el número de reservas por día.
 - Validación de horarios solapados para impedir reservar la misma mesa dos veces.
 - Confirmación de reserva y persistencia local en el navegador mediante `localStorage`.
-- Panel administrativo para consultar y cancelar reservas.
+- Panel administrativo para consultar, actualizar y cancelar reservas.
 
 Para la demostración académica, el acceso administrativo usa la contraseña `pardo2026`. La autenticación y el almacenamiento son locales y no están diseñados para producción ni para sincronizar entre dispositivos.
